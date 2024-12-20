@@ -26,36 +26,37 @@ def index(prompt):
     # return {"message": response}
     response_agent = response.choices[0].message.content.replace("\n","")
 
-    dict_response = eval(response_agent)
+    dict_response = eval(str(response_agent))
+    response_salles = ""
+    response_infos = ""
+    response_finances = ""
 
-    """
     if len(dict_response["RESERVATION_SALLE"]) != 0:
         print ("Thème RESERVATION_SALLE trouvé")
         data_salles = {"prompt":prompt}
-        response_salles = requests.get('https://c827-82-126-180-240.ngrok-free.app/salles', params = data_salles)
-        response_salles.text
+        response_salles = requests.get('https://c827-82-126-180-240.ngrok-free.app/salles', params = data_salles).text
+        print(response_salles)
 
     if len(dict_response["INFO_GENERALE"]) != 0:
         print ("Thème INFO_GENERALE trouvé")
         data_infos = {"prompt":prompt}
-        response_infos = requests.get('https://c827-82-126-180-240.ngrok-free.app/infos', params = data_infos)
-        response_infos.text
+        response_infos = requests.get('https://c827-82-126-180-240.ngrok-free.app/infos', params = data_infos).text
+        print(response_infos)
 
     if len(dict_response["FINANCE"]) != 0:
         print ("Thème FINANCE trouvé")
         data_finances = {"prompt":prompt}
-        response_finances = requests.get('https://c827-82-126-180-240.ngrok-free.app/finances', params = data_finances)
-        response_finances.text
+        response_finances = requests.get('https://c827-82-126-180-240.ngrok-free.app/finances', params = data_finances).text
+        print(response_finances)
+    
     """
-
     response_test = requests.get('https://c827-82-126-180-240.ngrok-free.app/')
     response_test.text
     return response_test.text
-
     """
     response_full = response_salles + response_infos + response_finances
     return response_full
-    """
+    
 
 
 
