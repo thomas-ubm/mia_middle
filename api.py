@@ -14,8 +14,8 @@ app = FastAPI()
 
 # Requêtte vers l'API /
 @app.get("/")
-def index(client_key, agent_id, prompt):
-    client = Mistral(api_key=client_key)
+def index(prompt):
+    client = Mistral(api_key=api_key)
     response = client.agents.complete(
         agent_id = agent_id,
         messages = [
@@ -28,6 +28,7 @@ def index(client_key, agent_id, prompt):
 
     dict_response = eval(response_agent)
 
+    """
     if len(dict_response["RESERVATION_SALLE"]) != 0:
         print ("Thème RESERVATION_SALLE trouvé")
         data_salles = {"prompt":prompt}
@@ -45,10 +46,16 @@ def index(client_key, agent_id, prompt):
         data_finances = {"prompt":prompt}
         response_finances = requests.get('https://c827-82-126-180-240.ngrok-free.app/finances', params = data_finances)
         response_finances.text
+    """
 
+    response_test = requests.get('https://c827-82-126-180-240.ngrok-free.app/')
+    response_test.text
+    return response_test.text
+
+    """
     response_full = response_salles + response_infos + response_finances
     return response_full
-
+    """
 
 
 
