@@ -30,24 +30,24 @@ def index(client_key, agent_id, prompt):
 
     if len(dict_response["RESERVATION_SALLE"]) != 0:
         print ("Thème RESERVATION_SALLE trouvé")
-        data = {"prompt":prompt}
-        response = requests.get('http://127.0.0.1:8000/salles', params = data)
-        response.text
+        data_salles = {"prompt":prompt}
+        response_salles = requests.get('http://127.0.0.1:8000/salles', params = data_salles)
+        response_salles.text
 
     if len(dict_response["INFO_GENERALE"]) != 0:
         print ("Thème INFO_GENERALE trouvé")
-        data = {"prompt":prompt}
-        response = requests.get('http://127.0.0.1:8000/infos', params = data)
-        response.text
+        data_infos = {"prompt":prompt}
+        response_infos = requests.get('http://127.0.0.1:8000/infos', params = data_infos)
+        response_infos.text
 
     if len(dict_response["FINANCE"]) != 0:
         print ("Thème FINANCE trouvé")
-        data = {"prompt":prompt}
-        response = requests.get('http://127.0.0.1:8000/finances', params = data)
-        response.text
+        data_finances = {"prompt":prompt}
+        response_finances = requests.get('http://127.0.0.1:8000/finances', params = data_finances)
+        response_finances.text
 
-
-    return response_agent
+    response_full = response_salles + response_infos + response_finances
+    return response_full
 
 
 
